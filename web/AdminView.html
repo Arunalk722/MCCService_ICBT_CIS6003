@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/AdminViewStyle.css">
+</head>
+<body>
+    <h2>Admin Dashboard - Manage Bookings</h2>
+    <table border="1">
+        <tr>
+            <th>Booking ID</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td>12345</td>
+            <td>John Doe</td>
+            <td>9876543210</td>
+            <td>Pending</td>
+            <td><button onclick="cancelBooking(12345)">Cancel</button></td>
+        </tr>
+    </table>
+    <p id="adminMessage"></p>
+
+    <script>
+        function cancelBooking(bookingId) {
+            // Replace with actual API call to cancel the booking
+            // For demonstration purposes, we'll just display a message
+            document.getElementById("adminMessage").innerText = "Booking " + bookingId + " Canceled."; 
+        }
+    </script>
+</body>
+</html>
