@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="assets/CustomerPayment.css">
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Payment for Taxi Booking</h2>
+        <form id="paymentForm">
+            <input type="text" id="bookingId" placeholder="Booking ID" required>
+            <input type="text" id="phoneNumber" placeholder="Phone Number" required>
+            <button type="submit">Verify & Pay</button>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let bookingId = document.getElementById("bookingId").value;
+            let phone = document.getElementById("phoneNumber").value;
+            let messageElement = document.getElementById("message");
+
+            if (bookingId === "12345" && phone === "9876543210") {
+                messageElement.innerText = "Payment Verified! Proceeding to payment...";
+                messageElement.classList.remove("error"); // Remove error class
+            } else {
+                messageElement.innerText = "Invalid Booking ID or Phone Number.";
+                messageElement.classList.add("error"); // Add error class
+            }
+        });
+    </script>
+</body>
+</html>
