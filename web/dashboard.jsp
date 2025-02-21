@@ -7,14 +7,11 @@
 <%@ page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    // ✅ Check if user is logged in
     User user = (User) session.getAttribute("user");
     if (user == null) {
-        response.sendRedirect("login.html");  // Redirect to login if not logged in
+        response.sendRedirect("login.html"); 
         return;
     }
-
-    // ✅ Get user role
     String role = user.getRole();
 %>
 <!DOCTYPE html>
@@ -32,13 +29,11 @@
 
         <div class="dashboard-options">
             <% if ("admin".equals(role)) { %>
-                <!-- ✅ Admin Panel Options -->
                 <a href="AdminController"><button>Manage Users</button></a>
-                <a href="BookingController"><button>View All Bookings</button></a>
-            <% } else if ("operator".equals(role)) { %>
-                <!-- ✅ Call Center Operator Options -->
-                <a href="BookingForm.html"><button>New Booking</button></a>
-                <a href="BookingController"><button>View My Bookings</button></a>
+                <a href="ViewBookingsController"><button>View All Bookings</button></a>
+            <% } else if ("operator".equals(role)) { %>                
+                <a href="bookingForm.jsp"><button>New Booking</button></a>
+                <a href="ViewBookingsController"><button>View My Bookings</button></a>
             <% } %>
         </div>
 

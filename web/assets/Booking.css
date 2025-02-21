@@ -6,53 +6,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : Feb 16, 2025, 6:35:12 PM
     Author     : Aruna
 */
-    body {
-            font-family: sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    text-align: center;
+}
 
-        .container {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+.container {
+    width: 40%;
+    background: white;
+    padding: 20px;
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
+h2 {
+    color: #333;
+}
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
 
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+button:hover {
+    background-color: #0056b3;
+}
 
-        #message {
-            margin-top: 20px;
-            text-align: center;
-            color: #3c763d;
-        }

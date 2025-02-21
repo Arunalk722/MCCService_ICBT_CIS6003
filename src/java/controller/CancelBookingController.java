@@ -5,9 +5,6 @@
 package controller;
 
 import dao.BookingDAO;
-import dao.DiscountDAO;
-import dao.DiscountStrategy;
-import dao.PercentageDiscount;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,14 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Booking;
 
 /**
  *
  * @author Aruna
  */
-@WebServlet(name = "BookingController", urlPatterns = {"/BookingController"})
-public class BookingController extends HttpServlet {
+@WebServlet(name = "CancelBookingController", urlPatterns = {"/CancelBookingController"})
+public class CancelBookingController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +37,10 @@ public class BookingController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BookingController</title>");            
+            out.println("<title>Servlet CancelBookingController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BookingController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CancelBookingController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,18 +58,7 @@ public class BookingController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String action = request.getParameter("action");
-        if ("cancel".equals(action)) {
-            int bookingId = Integer.parseInt(request.getParameter("bookingId"));
-            BookingDAO bookingDAO = new BookingDAO();
-            boolean canceled = bookingDAO.deleteBooking(bookingId);
-
-            if (canceled) {
-                response.sendRedirect("cancelBooking.jsp?status=success");
-            } else {
-                response.sendRedirect("cancelBooking.jsp?status=failed");
-            }
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -87,31 +72,13 @@ public class BookingController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String customerPhone = request.getParameter("customerPhone");
-        String source = request.getParameter("source");
-        String destination = request.getParameter("destination");
-        int vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
-        int driverId = Integer.parseInt(request.getParameter("driverId"));
-        float totalAmount = Float.parseFloat(request.getParameter("totalAmount"));
-        String discountCode = request.getParameter("discountCode");
-
-        // Get Discount Percentage
-        DiscountDAO discountDAO = new DiscountDAO();
-        float discountPercentage = discountDAO.getDiscountPercentage(discountCode);
-
-        // Apply Discount
-        DiscountStrategy discountStrategy = new PercentageDiscount(discountPercentage);
-        float finalAmount = discountStrategy.applyDiscount(totalAmount);
-
-        // Create Booking
-        Booking booking = new Booking(source, destination, customerPhone, vehicleId, driverId, finalAmount);
+        int bookingId = Integer.parseInt(request.getParameter("bookingId"));
         BookingDAO bookingDAO = new BookingDAO();
-        int bookingId = bookingDAO.createBooking(booking);
-
-        if (bookingId > 0) {
-            response.sendRedirect("bookingSuccess.jsp?bookingId=" + bookingId + "&finalAmount=" + finalAmount);
+        boolean isDeleted = bookingDAO.deleteBooking(bookingId);
+        if (isDeleted) {
+            response.sendRedirect("ViewBookingsController");
         } else {
-            response.sendRedirect("bookingError.jsp?error=Booking failed.");
+            response.sendRedirect("ViewBookingsController");
         }
     }
 
