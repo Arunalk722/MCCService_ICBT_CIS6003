@@ -27,7 +27,7 @@ private int transactionId;
         this.customerPhone = customerPhone;
         this.amount = amount;
         this.paymentMethod = paymentMethod;
-        this.paymentDateTime = new Timestamp(System.currentTimeMillis()); // ✅ Fixed Timestamp Initialization
+        this.paymentDateTime = new Timestamp(System.currentTimeMillis());
     }
 
     
