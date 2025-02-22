@@ -9,9 +9,9 @@ package model;
  * @author Aruna
  */
 public class DiscountManager {
-  private DiscountStrategy strategy;  
-  
-   public DiscountManager(DiscountStrategy strategy) {
+    private DiscountStrategy strategy;
+
+    public DiscountManager(DiscountStrategy strategy) {
         this.strategy = strategy;
     }
 
