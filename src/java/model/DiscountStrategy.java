@@ -8,19 +8,17 @@ package model;
  *
  * @author Aruna
  */
-interface DiscountStrategy {
+public interface DiscountStrategy {
     float applyDiscount(float totalAmount);
 }
 class NoDiscount implements DiscountStrategy {
-    @Override
     public float applyDiscount(float totalAmount) {
         return totalAmount;
     }
 }
 
 class LoyaltyDiscount implements DiscountStrategy {
-    @Override
     public float applyDiscount(float totalAmount) {
-        return totalAmount * 0.9f; 
+        return totalAmount * 0.9f;
     }
 }
