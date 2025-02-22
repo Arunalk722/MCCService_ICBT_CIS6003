@@ -6,8 +6,6 @@ package controller;
 
 import dao.BookingDAO;
 import dao.DiscountDAO;
-import model.DiscountStrategy;
-import model.PercentageDiscount;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Booking;
+import model.DiscountStrategy;
+import model.PercentageDiscount;
 
 /**
  *
