@@ -44,7 +44,6 @@ public class BookingDAO {
         }
         return bookingId;
     }
-
    
     public Booking getBookingById(int bookingId) {
         String query = "SELECT * FROM bookings WHERE booking_id = ?";
@@ -73,7 +72,6 @@ public class BookingDAO {
         }
         return booking;
     }
-
    
     public boolean markBookingAsPaid(int bookingId) {
         String query = "UPDATE bookings SET is_paid = TRUE WHERE booking_id = ?";
@@ -90,7 +88,6 @@ public class BookingDAO {
             return false;
         }
     }
-
    
     public boolean deleteBooking(int bookingId) {
         String query = "DELETE FROM bookings WHERE booking_id = ?";
@@ -107,7 +104,6 @@ public class BookingDAO {
             return false;
         }
     }
-
     
     public void autoCancelUnpaidBookings() {
         String query = "DELETE FROM bookings WHERE is_paid = FALSE AND booking_date < NOW() - INTERVAL 2 DAY";
@@ -123,7 +119,6 @@ public class BookingDAO {
             System.err.println("Error auto-canceling bookings: " + e.getMessage());
         }
     }
-
     
     public List<Booking> getAllBookings() {
         String query = "SELECT * FROM bookings";
@@ -151,5 +146,24 @@ public class BookingDAO {
             System.err.println("Error fetching all bookings: " + e.getMessage());
         }
         return bookingList;
+    }
+    
+    public float getBookingAmount(int bookingId) {
+        String query = "SELECT total_amount FROM bookings WHERE booking_id = ?";
+        float amount = 0.0f;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, bookingId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                amount = rs.getFloat("total_amount");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return amount;
     }
 }
