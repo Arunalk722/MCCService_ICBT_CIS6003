@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Aruna
  */
-@WebServlet(name = "GetBookingAmountServlet", urlPatterns = {"/GetBookingAmountServlet"})
-public class GetBookingAmountServlet extends HttpServlet {
+@WebServlet(name = "GetBookingAmountController", urlPatterns = {"/GetBookingAmountServlet"})
+public class GetBookingAmountController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,7 +57,8 @@ public class GetBookingAmountServlet extends HttpServlet {
      */
     @Override
    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {    try {     
+        throws ServletException, IOException {   
+       try {     
         int bookingIdParam = Integer.parseInt(request.getParameter("bookingId"));      
         System.out.println("Received bookingId: " + bookingIdParam);
         int bookingId = bookingIdParam;
@@ -68,12 +69,11 @@ public class GetBookingAmountServlet extends HttpServlet {
             response.getWriter().write("Error: Booking ID Not Found");
             return;
         }
-
         response.setContentType("text/plain");
         response.getWriter().write(String.format("%.2f", amount));
 
     } catch (NumberFormatException e) {
-        System.err.println("Invalid Booking ID format: " + e.getMessage());
+        System.err.println("Invalid Booking ID format: " + e.getMessage()); 
         response.setContentType("text/plain");
         response.getWriter().write("Error: Invalid Booking ID");
     } catch (Exception e) {
@@ -94,7 +94,8 @@ public class GetBookingAmountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       int bookingId = Integer.parseInt(request.getParameter("bookingId"));
+       System.out.println("GetBookingAmountServlet - Received bookingId: " + bookingId); 
     }
 
     /**
