@@ -81,7 +81,7 @@ public class VerifyPaymentController extends HttpServlet {
         if (paymentDAO.validateBookingBeforePayment(bookingId, customerPhone)) {
             response.sendRedirect("makePayment.jsp?bookingId=" + bookingId + "&customerPhone=" + customerPhone);
         } else {
-            response.sendRedirect("paymentFailure.jsp?error=Invalid Booking ID or Phone");
+            response.sendRedirect("paymentFailure.html?error=Invalid Booking ID or Phone");
         }
     }
 

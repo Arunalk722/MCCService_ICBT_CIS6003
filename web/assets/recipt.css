@@ -1,3 +1,12 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 3, 2025, 8:16:13 PM
+    Author     : Aruna
+*/
+
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
@@ -16,47 +25,41 @@ body {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
+    text-align: center;
     animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes fadeIn {
     from {
-    opacity: 0;
-    transform: translateY(-20px);
+        opacity: 0;
+        transform: translateY(-20px);
     }
-to {
-    opacity: 1;
-    transform: translateY(0);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-h2 {
+h1 {
     color: #333;
     margin-bottom: 20px;
     font-size: 24px;
-    text-align: center;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+p {
     color: #555;
-    font-weight: bold;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
+    margin: 10px 0;
 }
 
-input:focus {
-    border-color: #007bff;
-    outline: none;
+strong {
+    color: #007bff;
+}
+
+#qrcode {
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
 }
 
 button {
@@ -69,6 +72,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease;
+    margin: 10px 0;
 }
 
 button:hover {
@@ -80,23 +84,22 @@ button:active {
     transform: translateY(0);
 }
 
-
-input[name="discountCode"] {
-    background-color: #f9f9f9;
-}
-
-
+/* Responsive Design */
 @media (max-width: 480px) {
-.container {
-    padding: 20px;
-}
+    .container {
+        padding: 20px;
+    }
 
-h2 {
-    font-size: 20px;
-}
+    h1 {
+        font-size: 20px;
+    }
 
-input, button {
-    padding: 10px;
-    font-size: 14px;
+    p {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
     }
 }

@@ -13,17 +13,18 @@
 <head>
     <title>Verify Payment</title>
     <script src="assets/script.js"></script>
+    <link rel="stylesheet" href="assets/MakePayment.css">
 </head>
 <body>
-    <h2>Verify Your Booking</h2>
-    <form action="VerifyPaymentController" method="POST">
-        <label for="bookingId">Booking ID:</label>
-        <input type="text" name="bookingId" id="bookingId" value="<%= bookingId != null ? bookingId : "" %>" required readonly>
-
-        <label for="customerPhone">Phone Number:</label>
-        <input type="text" name="customerPhone" required>
-
-        <button type="submit">Verify</button>
-    </form>
+    <div class="container">
+        <h2>Verify Your Booking</h2>
+        <form action="VerifyPaymentController" method="POST">
+            <label for="bookingId">Booking ID:</label>
+            <input type="text" name="bookingId" id="bookingId" value="<%= bookingId != null ? bookingId : "" %>" required readonly>
+            <label for="customerPhone">Phone Number:</label>
+            <input type="text" name="customerPhone" required>
+            <button type="submit">Verify</button>
+        </form>
+    </div>
 </body>
 </html>
