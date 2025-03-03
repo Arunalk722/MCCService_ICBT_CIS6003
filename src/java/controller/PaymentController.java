@@ -73,19 +73,22 @@ public class PaymentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-int bookingId = Integer.parseInt(request.getParameter("bookingId"));
-        String customerPhone = request.getParameter("customerPhone");
-        float amount = Float.parseFloat(request.getParameter("amount"));
-        String paymentMethod = request.getParameter("paymentMethod");
+            int bookingId = Integer.parseInt(request.getParameter("bookingId"));
+            String customerPhone = request.getParameter("customerPhone");
+            float amount = Float.parseFloat(request.getParameter("amount"));
+            String paymentMethod = request.getParameter("paymentMethod");
 
-        PaymentDAO paymentDAO = new PaymentDAO();
-        Payment payment = new Payment(bookingId, customerPhone, amount, paymentMethod);
+            PaymentDAO paymentDAO = new PaymentDAO();
+            Payment payment = new Payment(bookingId, customerPhone, amount, paymentMethod);
 
         //Process the payment and update the database
         if (paymentDAO.processPayment(payment)) {
-            response.sendRedirect("receipt.jsp?bookingId=" + bookingId + "&amount=" + amount);
+             response.sendRedirect("receipt.jsp?bookingId=" + bookingId + 
+                             "&customerPhone=" + customerPhone + 
+                             "&amount=" + amount + 
+                             "&paymentMethod=" + paymentMethod);
         } else {
-            response.sendRedirect("paymentFailure.jsp");
+            response.sendRedirect("paymentFailure.html");
         }
     }
 

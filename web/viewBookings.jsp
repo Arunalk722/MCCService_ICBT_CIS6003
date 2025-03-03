@@ -20,9 +20,7 @@
 </head>
 <body class="bg-gray-100"> 
 <div class="container mx-auto p-4">
-
-    <h2 class="text-2xl font-bold mb-4">Admin Dashboard - Manage Bookings</h2>
-  
+    <h2 class="text-2xl font-bold mb-4">Admin Dashboard - Manage Bookings</h2>  
     <% String errorMessage = (String) request.getAttribute("errorMessage");
         if (errorMessage != null) { %>
         <p style="color: red;"><%= errorMessage %></p>
@@ -62,7 +60,6 @@
     <% } else { %>
         <p class="text-center text-gray-500 mt-4">No bookings found.</p> 
     <% } %>
-
     <div class="mt-6 text-center"> 
         <a href="dashboard.jsp"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back to Dashboard</button></a>
     </div>

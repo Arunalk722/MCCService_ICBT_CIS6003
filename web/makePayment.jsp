@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="assets/MakePayment.css">
     <title>Make Payment</title>
     <script>
         function fetchAmount() {
@@ -42,21 +43,24 @@
     </script>
 </head>
 <body>
-    <h2>Complete Your Payment</h2>
-    <form action="PaymentController" method="POST">
-        <input type="hidden" name="bookingId" id="bookingId" value="<%= bookingId %>">
-        <input type="hidden" name="customerPhone" value="<%= customerPhone %>">
+    <div class="container">
+        <h2>Complete Your Payment</h2>
+        <form action="PaymentController" method="POST">
+            <input type="hidden" name="bookingId" id="bookingId" value="<%= bookingId %>">
+            <input type="hidden" name="customerPhone" value="<%= customerPhone %>">
 
-        <label for="amount">Amount:</label>
-        <input type="text" id="amount" name="amount" readonly required>
+            <label for="amount">Amount:</label>
+            <input type="text" id="amount" name="amount" readonly required>
 
-        <label for="paymentMethod">Payment Method:</label>
-        <select name="paymentMethod">
-            <option value="Credit Card">Credit Card</option>
-            <option value="PayPal">PayPal</option>
-        </select>
+            <label for="paymentMethod">Payment Method:</label>
+            <select name="paymentMethod">
+                <option value="Credit Card">Credit Card</option>
+                <option value="Credit Card">Bank Transfer</option>
+                <option value="PayPal">PayPal</option>
+            </select>
 
-        <button type="submit">Pay Now</button>
-    </form>
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
 </body>
 </html>
