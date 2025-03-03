@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Booking;
 import model.DiscountStrategy;
+import model.NotificationService;
 import model.PercentageDiscount;
 
 /**
@@ -107,9 +108,11 @@ public class BookingController extends HttpServlet {
         Booking booking = new Booking(source, destination, customerPhone, vehicleId, driverId, finalAmount);
         BookingDAO bookingDAO = new BookingDAO();
         int bookingId = bookingDAO.createBooking(booking);
-
+        NotificationService notification = new NotificationService();
         if (bookingId > 0) {
-            response.sendRedirect("bookingSuccess.jsp?bookingId=" + bookingId + "&finalAmount=" + finalAmount);
+            
+            notification.sendBookingConfirmation(bookingId, customerPhone);
+            response.sendRedirect("bookingSuccess.jsp?bookingId=" + bookingId + "&finalAmount=" + finalAmount);            
         } else {
             response.sendRedirect("bookingError.jsp?error=Booking failed.");
         }
