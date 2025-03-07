@@ -6,6 +6,8 @@ package dao;
 
 import model.User;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Aruna
@@ -43,7 +45,34 @@ public class UserDAO {
         }
         return user;
     }
-    
+
+    public List<User> getAllUsers() {
+
+        String query = "SELECT * FROM users";
+        List<User> userList = new ArrayList<>();
+        
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                    rs.getInt("user_id"),
+                    rs.getString("username"),
+                    rs.getString("password"),
+                    rs.getString("name"),
+                    rs.getString("role")
+                );
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching users: " + e.getMessage());
+        }        
+        return userList;
+    }
+
+
     public static  User exceptionTest(String username, String password) {
         String query = "SELECT * FROM user WHERE username = ? AND password = ?";
         User user = null;

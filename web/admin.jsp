@@ -4,11 +4,12 @@
     Author     : Aruna
 --%>
 
-<%@page import="model.User"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="javax.servlet.http.HttpSession"%>
-<%@page import="java.io.IOException"%>
-
+<%@ page import="java.util.List" %>
+<%@ page import="model.User" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    List<User> users = (List<User>) request.getAttribute("users");  // Fetch the user list from the request attribute
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,60 +17,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - User Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.3.2/tailwind.min.css">
     <link rel="stylesheet" href="assets/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body>
-    <div class="sidebar">
-        <h2>Admin Panel</h2>
-        <ul>
-            <li><a href="#users"><i class="fas fa-users"></i> User Management</a></li>
-        </ul>
+<body class="bg-gray-100">
+
+<div class="container mx-auto p-4">
+    <h2 class="text-2xl font-bold mb-4">Admin Dashboard - User Management</h2>  
+    
+    <% String errorMessage = (String) request.getAttribute("errorMessage");
+        if (errorMessage != null) { %>
+        <p style="color: red;"><%= errorMessage %></p>
+    <% } %> 
+    
+    <% if (users != null && !users.isEmpty()) { %>
+        <table class="w-full border-collapse shadow-md">
+            <thead class="bg-gray-200">
+            <tr>
+                <th class="py-2 px-4 text-left">User ID</th>
+                <th class="py-2 px-4 text-left">Username</th>
+                <th class="py-2 px-4 text-left">Name</th>
+                <th class="py-2 px-4 text-left">Role</th>
+                <th class="py-2 px-4 text-left">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (User user : users) { %>
+                <tr class="hover:bg-gray-50">
+                    <td class="py-2 px-4"><%= user.getUserId() %></td>
+                    <td class="py-2 px-4"><%= user.getUsername() %></td>
+                    <td class="py-2 px-4"><%= user.getName() %></td>
+                    <td class="py-2 px-4"><%= user.getRole() %></td>
+                    <td class="py-2 px-4">
+                        <!-- Actions like Edit and Delete -->
+                        <a href="editUser.jsp?userId=<%= user.getUserId() %>" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                        <form action="DeleteUserController" method="POST" style="display:inline;">
+                            <input type="hidden" name="userId" value="<%= user.getUserId() %>">
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p class="text-center text-gray-500 mt-4">No users found.</p> 
+    <% } %>
+
+    <div class="mt-6 text-center"> 
+        <a href="dashboard.jsp"><button class="button">Back to Dashboard</button></a>
     </div>
 
-    <div class="content">
-        <h1>User Management</h1>
-        
-        <div class="card">
-            <h2>Manage Users</h2>
-            <p>View, add, edit, and delete user accounts.</p>
-            
-            <button class="btn">Add New User</button>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>admin</td>
-                        <td>Admin User</td>
-                        <td>Administrator</td>
-                        <td>
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>john_doe</td>
-                        <td>John Doe</td>
-                        <td>Editor</td>
-                        <td>
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+</div>
+
 </body>
 </html>
