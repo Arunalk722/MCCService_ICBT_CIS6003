@@ -1,4 +1,4 @@
-name: Check Controllers, DAO, and Models Existence
+name: Check Controllers, DAO, and Models Existences
 
 on:
   push:
