@@ -29,7 +29,7 @@
 
         <div class="dashboard-options">
             <% if ("admin".equals(role)) { %>
-                <a href="AdminController"><button>Manage Users</button></a>
+                <a href="admin.jsp"><button>Manage Users</button></a>
                 <a href="ViewBookingsController"><button>View All Bookings</button></a>
             <% } else if ("operator".equals(role)) { %>                
                 <a href="bookingForm.jsp"><button>New Booking</button></a>

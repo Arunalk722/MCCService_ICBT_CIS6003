@@ -35,16 +35,16 @@ public class UserDAO {
                 );
             }
             else{
-                user = new User(0, "Worng", "", "", "");
+             
             }
         } catch (SQLException e) {
             System.err.println("Error validating user: " + e.getMessage());
-            user = new User(-1, "Worng", "", "", "");
+          
         }
         return user;
     }
     
-   public static  User exceptionTest(String username, String password) {
+    public static  User exceptionTest(String username, String password) {
         String query = "SELECT * FROM user WHERE username = ? AND password = ?";
         User user = null;
 
