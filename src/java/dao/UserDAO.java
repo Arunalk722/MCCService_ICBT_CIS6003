@@ -13,7 +13,8 @@ import java.sql.*;
 public class UserDAO {
 
     // Validate User Credentials
-    public User validateUser(String username, String password) {
+    
+    public  User validateUser(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         User user = null;
 
@@ -33,8 +34,42 @@ public class UserDAO {
                     rs.getString("role")
                 );
             }
+            else{
+                user = new User(0, "Worng", "", "", "");
+            }
         } catch (SQLException e) {
             System.err.println("Error validating user: " + e.getMessage());
+            user = new User(-1, "Worng", "", "", "");
+        }
+        return user;
+    }
+    
+   public static  User exceptionTest(String username, String password) {
+        String query = "SELECT * FROM user WHERE username = ? AND password = ?";
+        User user = null;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                user = new User(
+                    rs.getInt("user_id"),
+                    rs.getString("username"),
+                    rs.getString("password"),
+                    rs.getString("name"),
+                    rs.getString("role")
+                );
+            }
+            else{
+                user = new User(0, "Worng", "", "", "");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error validating user: " + e.getMessage());
+            user = new User(-1, "Worng", "", "", "");
         }
         return user;
     }
