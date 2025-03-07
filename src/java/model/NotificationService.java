@@ -17,11 +17,13 @@ public class NotificationService {
     public void sendBookingConfirmation(int bookingId, String customerPhone) {
         notifications.add("Booking " + bookingId + " confirmed for " + customerPhone);
         System.out.println("Booking confirmation sent to " + customerPhone);
+        System.out.println("http://localhost:8080/Mega_City_Cab_Service/verifyPayment.jsp?bookingId="+bookingId);
     }
 
     public void sendPaymentFailure(int bookingId, String customerPhone) {
         notifications.add("Payment failed for Booking " + bookingId + ". Contact support.");
-        System.out.println("Payment failure notification sent to " + customerPhone);
+        System.out.println("Payment failure notification sent to " + customerPhone);       
     }
+    
 }
 
