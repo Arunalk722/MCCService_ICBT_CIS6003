@@ -16,7 +16,7 @@
         <p><strong>Booking ID:</strong> <%= bookingId %></p>
         <p><strong>Final Amount (After Discount):</strong> LKR<%= finalAmount %></p>
         
-        <a href="bookingForm.jsp"><button>Make Another Booking</button></a>
+        <a href="BookingController"><button>Make Another Booking</button></a>
         <a href="dashboard.jsp"><button>Go to Dashboard</button></a>
     </div>
 </body>
