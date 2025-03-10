@@ -6,8 +6,11 @@ package controller;
 
 import dao.BookingDAO;
 import dao.DiscountDAO;
+import dao.DriverDAO;
+import dao.VehicleDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Booking;
 import model.DiscountStrategy;
+import model.Driver;
 import model.NotificationService;
 import model.PercentageDiscount;
+import model.Vehicle;
 
 /**
  *
@@ -68,12 +73,21 @@ public class BookingController extends HttpServlet {
             int bookingId = Integer.parseInt(request.getParameter("bookingId"));
             BookingDAO bookingDAO = new BookingDAO();
             boolean canceled = bookingDAO.deleteBooking(bookingId);
-
             if (canceled) {
                 response.sendRedirect("cancelBooking.jsp?status=success");
             } else {
                 response.sendRedirect("cancelBooking.jsp?status=failed");
             }
+        }
+        else{
+            VehicleDAO vehicleDAO = new VehicleDAO();
+            DriverDAO driverDAO = new DriverDAO();
+            List<Vehicle> vehicleList = vehicleDAO.getAllVehicles();
+            List<Driver> driverList = driverDAO.getAllDrivers();      
+            System.out.println(vehicleList.toString());            
+            request.setAttribute("driverList", driverList);         
+            request.setAttribute("vehicleList", vehicleList);
+            request.getRequestDispatcher("bookingForm.jsp").forward(request, response);
         }
     }
 
@@ -109,8 +123,7 @@ public class BookingController extends HttpServlet {
         BookingDAO bookingDAO = new BookingDAO();
         int bookingId = bookingDAO.createBooking(booking);
         NotificationService notification = new NotificationService();
-        if (bookingId > 0) {
-            
+        if (bookingId > 0) {            
             notification.sendBookingConfirmation(bookingId, customerPhone);
             response.sendRedirect("bookingSuccess.jsp?bookingId=" + bookingId + "&finalAmount=" + finalAmount);            
         } else {

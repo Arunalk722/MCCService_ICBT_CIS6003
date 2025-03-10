@@ -32,7 +32,7 @@
                 <a href="AdminController"><button>Manage Users</button></a>
                 <a href="ViewBookingsController"><button>View All Bookings</button></a>
             <% } else if ("operator".equals(role)) { %>                
-                <a href="bookingForm.jsp"><button>New Booking</button></a>
+                <a href="BookingController"><button>New Booking</button></a>
                 <a href="ViewBookingsController"><button>View My Bookings</button></a>
             <% } %>
         </div>
