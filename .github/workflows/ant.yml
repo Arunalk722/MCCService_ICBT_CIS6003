@@ -40,6 +40,8 @@ jobs:
           "DiscountDAO.java"
           "PaymentDAO.java"
           "UserDAO.java"
+          "DriverDAO.java"
+          "VehicleDAO.java"
         )
 
         MODEL_FILES=(
@@ -52,6 +54,8 @@ jobs:
           "PercentageDiscount.java"
           "SystemManager.java"
           "User.java"
+          "Driver.java"
+          "Vehicle.java"
         )
 
         # Function to check files in a given directory
