@@ -125,7 +125,7 @@ public class BookingController extends HttpServlet {
         NotificationService notification = new NotificationService();
         if (bookingId > 0) {            
             notification.sendBookingConfirmation(bookingId, customerPhone);
-            response.sendRedirect("bookingSuccess.jsp?bookingId=" + bookingId + "&finalAmount=" + finalAmount);            
+            response.sendRedirect("bookingSuccess.jsp?bookingId=" + bookingId + "&finalAmount=" + finalAmount+"&custNum="+customerPhone);            
         } else {
             response.sendRedirect("bookingError.jsp?error=Booking failed.");
         }

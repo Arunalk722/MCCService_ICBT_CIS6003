@@ -35,10 +35,7 @@
             <input type="text" name="source" required>
 
             <label for="destination">Destination:</label>
-            <input type="text" name="destination" required>
-
-            <label for="vehicleId">Vehicle ID:</label>
-            <input type="number" name="vehicleId" required>
+            <input type="text" name="destination" required>           
 
            <label for="vehicleId">Vehicle:</label>
             <select id="vehicleId" name="vehicleId" required>
@@ -58,6 +55,10 @@
                     </option>
                 </c:forEach>
             </select>
+            
+            <label for="totalAmount">Total Amount:</label>
+            <input type="number" id="totalAmount" name="totalAmount" step="0.01" required>
+            
             <label for="discountCode">Discount Code:</label>
             <input type="text" name="discountCode">
 
