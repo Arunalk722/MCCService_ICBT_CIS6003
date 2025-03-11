@@ -2,6 +2,7 @@
 <%
     String bookingId = request.getParameter("bookingId");
     String finalAmount = request.getParameter("finalAmount");
+    String custNum = request.getParameter("custNum");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,7 @@
         <p>Your booking has been confirmed.</p>
         <p><strong>Booking ID:</strong> <%= bookingId %></p>
         <p><strong>Final Amount (After Discount):</strong> LKR<%= finalAmount %></p>
-        
+        <p><strong>Notification send to :</strong><%= custNum %></p>
         <a href="BookingController"><button>Make Another Booking</button></a>
         <a href="dashboard.jsp"><button>Go to Dashboard</button></a>
     </div>

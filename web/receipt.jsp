@@ -59,6 +59,7 @@
         <div id="qrcode"></div>
         <button onclick="downloadPDF()">Download as PDF</button>
         <div class="success-message">
+            <strong>Please download your receipt to present as booking confirmation to the driver.</strong>
             <p>✅ Payment Successfully Completed!</p>
             <p>Thank you for choosing us. We look forward to serving you again!</p>
         </div>

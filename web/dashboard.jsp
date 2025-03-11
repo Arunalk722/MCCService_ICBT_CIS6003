@@ -35,9 +35,14 @@
                 <a href="BookingController"><button>New Booking</button></a>
                 <a href="ViewBookingsController"><button>View My Bookings</button></a>
             <% } %>
-        </div>
+        </div>       
 
         <a href="LoginController"><button>Logout</button></a>
+
+        <!-- Application version added at the bottom -->
+        <div class="app-version">
+            <p>Application Version: V1.0.0.3</p>
+        </div>
     </div>
 </body>
 </html>
