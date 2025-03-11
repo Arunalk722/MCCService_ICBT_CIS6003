@@ -41,7 +41,7 @@
 
         <!-- Application version added at the bottom -->
         <div class="app-version">
-            <p>Application Version: V1.0.0.3</p>
+            <p>Application Version: V1.0.0.4</p>
         </div>
     </div>
 </body>

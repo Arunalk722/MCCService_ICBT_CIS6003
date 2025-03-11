@@ -2,12 +2,13 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
+
 /* 
     Created on : Feb 16, 2025, 6:39:41 PM
     Author     : Aruna
 */
 
-  body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -43,24 +44,45 @@ nav a {
 nav a:hover {
     background-color: #004494;
 }
-
+.feature-icon {
+    width: 60px; /* Reduced from 80px */
+    height: 60px; /* Reduced from 80px */
+    margin-bottom: 15px;
+}
 .hero {
-    background-image: url('https://via.placeholder.com/1200x400');
+    position: relative;
+    background-image: url('images/home.avif'); 
     background-size: cover;
     background-position: center;
     color: white;
     text-align: center;
     padding: 3rem 1rem;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
 }
 
 .hero h2 {
     font-size: 2.5rem;
     margin: 0;
+    position: relative;
+    z-index: 2;
 }
 
 .hero p {
     font-size: 1.2rem;
     margin: 1rem 0;
+    position: relative;
+    z-index: 2;
 }
 
 .hero button {
@@ -72,6 +94,8 @@ nav a:hover {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    position: relative;
+    z-index: 2;
 }
 
 .hero button:hover {
@@ -92,14 +116,29 @@ nav a:hover {
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.features .feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.features .feature img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
 }
 
 .features h3 {
     margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
 }
 
 .features p {
     color: #555;
+    font-size: 1rem;
 }
 
 footer {
@@ -115,10 +154,15 @@ footer p {
 
 @media (max-width: 768px) {
     .hero h2 {
-font-size: 2rem;
+        font-size: 2rem;
     }
 
     .hero p {
-font-size: 1rem;
+        font-size: 1rem;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        padding: 1rem;
     }
 }
