@@ -80,13 +80,16 @@ public class BookingController extends HttpServlet {
             }
         }
         else{
-            VehicleDAO vehicleDAO = new VehicleDAO();
-            DriverDAO driverDAO = new DriverDAO();
+            VehicleDAO vehicleDAO = new VehicleDAO();            
             List<Vehicle> vehicleList = vehicleDAO.getAllVehicles();
+            DriverDAO driverDAO = new DriverDAO();
             List<Driver> driverList = driverDAO.getAllDrivers();      
+            DiscountDAO discountDAO = new DiscountDAO();
+            List<String> discountList = discountDAO.getAllDiscountCodes();
             System.out.println(vehicleList.toString());            
             request.setAttribute("driverList", driverList);         
-            request.setAttribute("vehicleList", vehicleList);
+            request.setAttribute("vehicleList", vehicleList);  
+            request.setAttribute("discountList", discountList);
             request.getRequestDispatcher("bookingForm.jsp").forward(request, response);
         }
     }
