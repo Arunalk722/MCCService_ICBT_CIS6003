@@ -5,6 +5,8 @@
 
 package dao;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Aruna
@@ -28,5 +30,26 @@ public class DiscountDAO {
         }
 
         return discountPercentage;
+    }
+    
+     public List<String> getAllDiscountCodes() {
+        List<String> discountList = new ArrayList<>();
+        String query = "SELECT discount_code, discount_percentage FROM discounts";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String code = rs.getString("discount_code");
+                float percentage = rs.getFloat("discount_percentage");
+                discountList.add(code + " (" + percentage + "%)");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return discountList;
     }
 }

@@ -13,6 +13,7 @@ import model.Vehicle;
  * @author Aruna
  */
 public class VehicleDAO {
+    
  public List<Vehicle> getAllVehicles() {
         List<Vehicle> vehicleList = new ArrayList<>();
         String query = "SELECT vehicle_id,vehicle_number,vehicle_type FROM vehicles";

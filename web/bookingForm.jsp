@@ -4,6 +4,7 @@
     Author     : Aruna
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="model.User"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -59,8 +60,21 @@
             <label for="totalAmount">Total Amount:</label>
             <input type="number" id="totalAmount" name="totalAmount" step="0.01" required>
             
-            <label for="discountCode">Discount Code:</label>
-            <input type="text" name="discountCode">
+            <label for="discountCode">Select Discount:</label>
+            <select name="discountCode">
+                <option value="">No Discount</option>
+                <%
+                    List<String> discountList = (List<String>) request.getAttribute("discountList");
+                    if (discountList != null) {
+                        for (String discount : discountList) {
+                            String code = discount.split(" ")[0];
+                %>
+                <option value="<%= code %>"><%= discount %></option>
+                <%
+                 }
+                }
+                %>
+            </select>
 
             <button type="submit">Create Booking</button>
         </form>
