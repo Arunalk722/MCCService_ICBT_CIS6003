@@ -1,5 +1,11 @@
-<!DOCTYPE html>
+<%-- 
+    Document   : login
+    Created on : Mar 12, 2025, 8:22:57 PM
+    Author     : Aruna
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

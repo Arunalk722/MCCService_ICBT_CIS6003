@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("user", user);
             response.sendRedirect("dashboard.jsp");
         } else {
-            response.sendRedirect("login.html?error=Invalid username or password");
+            response.sendRedirect("login.jsp?error=Invalid username or password");
         }
     }
     
@@ -44,6 +44,6 @@ public class LoginController extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
-        response.sendRedirect("login.html");
+        response.sendRedirect("login.jsp");
     }
 }
