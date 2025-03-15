@@ -8,6 +8,8 @@ package model;
  *
  * @author Aruna
  */
+
+//Singleton Pattern
 public class SystemManager {
     private static SystemManager instance;
 
