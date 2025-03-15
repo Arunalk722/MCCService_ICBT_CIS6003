@@ -8,6 +8,8 @@ package model;
  *
  * @author Aruna
  */
+
+//Strategy Pattern
 public interface DiscountStrategy {
     float applyDiscount(float totalAmount);
 }
